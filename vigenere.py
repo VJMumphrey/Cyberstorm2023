@@ -1,9 +1,6 @@
 # Imported needed libraries
 import sys
 
-# Set better names for variables
-mode = sys.argv[1]
-key = sys.argv[2]
 # Booleans for stdio
 stdin = sys.stdin.isatty
 stdout = sys.stdout.isatty
@@ -92,13 +89,18 @@ def unshift(num, upper):
 # Check if called with enough args and contains compatible modes
 if (len(sys.argv)<=2) or (not (sys.argv[1] == "-e" or sys.argv[1] == "-d")):
     # Incorrect call and help info
-    print("Incorrect usage.\n\n$ python vigenere.py <mode> <key>\n\n\
+    print("Incorrect usage.\n$ python vigenere.py <mode> <key>\n\
 <mode>\n\t-e : encrypt a message using the given key\n\
 \t-d : decrypt a message using the given key\n\
-<key>\n\tA string used to encrypt or decrypt the message.")
+<key>\n\tA string used to encrypt or decrypt the message.\n")
 
 else:
     # Main loop
+
+    # Set better names for variables
+    mode = sys.argv[1]
+    key = sys.argv[2]
+
     redirected = False
     textin = ""
     while(textin != "QUIT"):
