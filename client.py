@@ -6,24 +6,26 @@ ZERO = 0.1
 ONE = 0.025
 threshhold = (ZERO + ONE)/2
 
+#iplist = ["localhost","138.47.99.64"]
+#ip = iplist[1]
+#port = 31337
 
-iplist = ["localhost","138.47.99.64"]
-ip = iplist[1]
-port = 31337
+ip = input("ip = ")
+port = int(input("port = "))
 
 # AF_INET is a network stack
 # SOCK_STREAM is the type of communication (TCP protocol)
 s = socket(AF_INET, SOCK_STREAM)
 
-print("[connect to the chat server]")
+print("[connecting]")
 s.connect((ip, port))
+print("[connected]")
 
 data = s.recv(4096).decode()
 
 msg = ""
 covert_bin = ""
 
-print("...")
 while (data.rstrip("\n") != "EOF"):
     stdout.write(data)
     stdout.flush()
@@ -38,9 +40,7 @@ while (data.rstrip("\n") != "EOF"):
     else:
         covert_bin += "1"
 
-stdout.write("...\n")
-
-print("[disconnect from the chat server]")
+print("[disconnected]")
 s.close()
 
 covert = ""
